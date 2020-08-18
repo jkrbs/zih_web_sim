@@ -1,0 +1,15 @@
+<html>
+    <head>
+        <title>ZIHNVWNO</title>
+    </head>
+    <body>
+        <h1>ZIH NutzendenVerwaltungsWerkzeugNetzOberfläche</h1>
+        <h2>Name aktualisieren</h2>
+        <form method="POST", action="/api/update/name">
+            <input type="text" name="first_name" value={{ first_name }}>
+            <input type="text" name="last_name"  value={{ first_name }}>
+            <input type="hidden" name="uid" value={{ id }}>
+            <input type="submit">
+        </form>
+    </body>
+</html>

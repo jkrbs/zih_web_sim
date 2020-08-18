@@ -9,6 +9,14 @@ pub struct UserForm {
     pub password: Option<String>,
     pub id: Option<String>
 }
+
+#[derive(FromForm)]
+pub struct UpdateNameForm {
+    pub uid: String,
+    pub first_name: String,
+    pub last_name: String
+}
+
 #[derive(Queryable, serde::Serialize)]
 pub struct User {
     pub first_name: String,

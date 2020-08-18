@@ -1,8 +1,8 @@
 #![feature(proc_macro_hygiene, decl_macro)]
 
 use rocket::request::LenientForm;
-use zih_web_sim::{create_new_user, get_user, get_user_list};
-use zih_web_sim::models::UserForm;
+use zih_web_sim::{create_new_user, get_user, get_user_list, update_name};
+use zih_web_sim::models::*;
 
 use std::io;
 use rocket::response::{NamedFile};
@@ -25,6 +25,12 @@ fn matriculate(user: LenientForm<UserForm>) -> String {
     format!("{}, {}", e.0, e.1)
 }
 
+#[post("/api/update/name", data="<update>")]
+fn updatename(update: LenientForm<UpdateNameForm>) -> String {
+    update_name(update.into_inner());
+    "ok".to_string()
+}
+
 
 #[get("/")]
 pub fn index() -> io::Result<NamedFile> {
@@ -42,6 +48,12 @@ pub fn show_user(uid: String) -> Template {
     Template::render("show_user", user)
 }
 
+#[get("/update_user_name/<uid>")]
+pub fn update_username(uid: String) -> Template {
+    let user = &get_user(uid)[0];
+    Template::render("update_user_name", user)
+}
+
 #[get("/list_users")]
 pub fn list_users() -> Template {
     let user = &get_user_list();
@@ -50,7 +62,7 @@ pub fn list_users() -> Template {
 
 fn main() {
     rocket::ignite()
-    .mount("/", routes![index, new_user, matriculate, show_user, list_users])
+    .mount("/", routes![index, new_user, matriculate, show_user, list_users, updatename, update_username])
     .attach(Template::fairing())
     .launch();
 }

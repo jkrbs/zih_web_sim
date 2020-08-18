@@ -5,7 +5,7 @@ extern crate dotenv;
 pub mod models;
 pub mod schema;
 
-use crate::models::{User, NewUser, UserForm};
+use crate::models::{User, NewUser, UserForm, UpdateNameForm};
 use diesel::prelude::*;
 use dotenv::dotenv;
 use std::env;
@@ -63,4 +63,20 @@ pub fn get_user(uid: String) -> Vec<User> {
     let conn = establish_connection();
     users.find(uid).load(&conn).expect("err")
 
+}
+
+pub fn update_name(update: UpdateNameForm) {
+    use crate::schema::users::dsl::*;
+
+    let conn = establish_connection();
+    let uid = update.uid;
+    diesel::update(users.find(&uid))
+    .set(last_name.eq(update.last_name))
+    .execute(&conn)
+    .expect("error while updating username");
+
+    diesel::update(users.find(&uid))
+    .set(first_name.eq(update.first_name))
+    .execute(&conn)
+    .expect("error while updating username");
 }
