@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <title>ZIHNVWNO</title>
+    </head>
+    <body>
+        <h1>ZIH NutzendenVerwaltungsWerkzeugNetzOberfläche</h1>
+        <ul>
+            <li>{{ first_name }}</li>
+            <li>{{ last_name }}</li>
+            <li>{{ address }}</li>
+            <li>{{ password }}</li>
+            <li>{{ id }}</li>
+            <li>{{ birthdate }}</li>
+        </ul>
+    </body>
+</html>
