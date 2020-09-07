@@ -5,10 +5,17 @@
     <body>
         <h1>ZIH NutzendenVerwaltungsWerkzeugNetzOberfläche</h1>
         <table>
-            <tr><td>Befehl</td><td>Nummer</td></tr>
-            {% for cmd in Commands %}
-            <tr><td>{{ cmd.name }}</td> <td>{{ cmd.number }}</td></tr>
-            {% endfor %}
+            <tr><td>Befehl</td></tr>
+            <tr><td><button onclick="location.href = '/new_user';">Nutzer hinzufügen</button></td></tr>
+            <tr><td>
+                <form action="/update_name" method="GET">
+                    <input type="text" name="uid" id="uid">
+                    <button type="submit">Nutzer umbennenen</button></form></td></tr>
+                    <tr><td>
+                        <form action="/show_user" method="GET">
+                            <input type="text" name="uid" id="uid">
+                            <input type="password" name="password" id="password">
+                            <button type="submit">Nutzer anzeigen</button></form></td></tr>                
         </table>
     </body>
 </html>
