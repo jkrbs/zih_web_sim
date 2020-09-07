@@ -18,6 +18,11 @@ struct Users<'a> {
     users: &'a Vec<User> 
 }
 
+#[derive(serde::Serialize)]
+struct TErr<'a> {
+    error: &'a String
+}
+
 #[post("/api/matriculate", data="<user>")]
 fn matriculate(user: LenientForm<UserForm>) -> String {
     let e = create_new_user(user.into_inner());
