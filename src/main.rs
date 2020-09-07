@@ -27,7 +27,7 @@ struct TErr<'a> {
 fn matriculate(user: LenientForm<UserForm>) -> String {
     let e = create_new_user(user.into_inner());
     
-    format!("{}, {}", e.0, e.1)
+    format!("password:{}, id:{}", e.0, e.1)
 }
 
 #[post("/api/update/name", data="<update>")]
@@ -47,10 +47,14 @@ pub fn new_user() -> io::Result<NamedFile> {
     NamedFile::open("static/new_user.html")
 }
 
-#[get("/show_user/<uid>")]
-pub fn show_user(uid: String) -> Template {
+#[get("/show_user?<uid>&<password>")]
+pub fn show_user(uid: String, password: String) -> Template {
     let user = &get_user(uid)[0];
-    Template::render("show_user", user)
+    if user.password == password  {
+        Template::render("show_user", user)
+    } else {
+        Template::render("error", TErr{error: &"wrong password".to_string()} )
+    }
 }
 
 #[get("/update_user_name/<uid>")]

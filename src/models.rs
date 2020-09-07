@@ -21,10 +21,10 @@ pub struct UpdateNameForm {
 pub struct User {
     pub first_name: String,
     pub last_name: String,
-    pub birthdate: String,
+    pub id: String,
     pub address: String,
     pub password: String,
-    pub id: String
+    pub birthdate: String
 }
 
 use crate::schema::users;
