@@ -6,7 +6,7 @@
         <h1>ZIH NutzendenVerwaltungsWerkzeugNetzOberfläche</h1>
         <ul>
             {% for u in users %}    
-            <li><a href=\"show_user/{{ u.id }}\">{{ u.first_name }} {{ u.last_name }}</a></li>
+            <li><a href=show_user/{{ u.id }}>{{ u.first_name }} {{ u.last_name }}</a></li>
             {% endfor %}
         </ul>
     </body>
