@@ -1,10 +1,40 @@
 <html>
     <head>
         <title>ZIHNVWNO</title>
+	    <style>
+      .blink {
+        animation: blinker 0.6s linear infinite;
+        color: #1c87c9;
+        font-size: 30px;
+        font-weight: bold;
+        font-family: sans-serif;
+      }
+      @keyframes blinker {
+        50% {
+          opacity: 0;
+        }
+      }
+      .blink-one {
+        animation: blinker-one 1s linear infinite;
+      }
+      @keyframes blinker-one {
+        0% {
+          opacity: 0;
+        }
+      }
+      .blink-two {
+        animation: blinker-two 1.4s linear infinite;
+      }
+      @keyframes blinker-two {
+        100% {
+          opacity: 0;
+        }
+      }
+    </style>
     </head>
     <body>
-        <h1>ZIH NutzendenVerwaltungsWerkzeugNetzOberfläche</h1>
-        <table>
+        <h1 class="blink-two">ZIH NutzendenVerwaltungsWerkzeugNetzOberfläche</h1>
+        <table class="blink-one">
             <tr><td>Befehl</td></tr>
             <tr><td><button onclick="location.href = '/new_user';">Nutzer hinzufügen</button></td></tr>
             <tr><td>
@@ -17,5 +47,12 @@
                             <input type="password" name="password" id="password">
                             <button type="submit">Nutzer anzeigen</button></form></td></tr>                
         </table>
+	<div class="blink">
+	Paswort ändern:
+	Feld 1: UserID
+	Feld 2: IHR ZIH PASSWORT
+	Nutzer umbenennen:
+	Feld 1: UserID
+	</div>
     </body>
 </html>
